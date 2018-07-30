@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhoCorasick.Core", "AhoCorasick.Core\AhoCorasick.Core.csproj", "{0CACBBA0-72ED-4C14-8591-0A80A6084910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AhoCorasick.Test", "AhoCorasick.Test\AhoCorasick.Test.csproj", "{3175D47C-2CA3-4322-8A74-90B177588BE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CACBBA0-72ED-4C14-8591-0A80A6084910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CACBBA0-72ED-4C14-8591-0A80A6084910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CACBBA0-72ED-4C14-8591-0A80A6084910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CACBBA0-72ED-4C14-8591-0A80A6084910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3175D47C-2CA3-4322-8A74-90B177588BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3175D47C-2CA3-4322-8A74-90B177588BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3175D47C-2CA3-4322-8A74-90B177588BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3175D47C-2CA3-4322-8A74-90B177588BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
