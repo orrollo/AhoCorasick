@@ -17,6 +17,8 @@ namespace AhoCorasick.Core
             public object FinalContext { get; set; }
             public int DataLength { get; set; }
 
+            public bool HasFinalSuffix { get; set; }
+
             protected internal Dictionary<TItem, Node> Jumps;
 
             public Node()

@@ -52,12 +52,15 @@ namespace AhoCorasick.Core
                     {
                         currentNode = currentNode.Jumps[income];
                         State = currentNode.Id;
-                        if (currentNode.Final)
+                        ProcessFinalNode(currentNode, foundAction);
+                        if (currentNode.HasFinalSuffix)
                         {
-                            var foundPosition = Position - currentNode.DataLength;
-
-                            if (foundAction != null) foundAction(foundPosition, currentNode.FinalContext);
-                            if (TotalFound != null) TotalFound(foundPosition, currentNode.FinalContext);
+                            var suffixLink = currentNode.SuffixLink;
+                            while (suffixLink != suffixLink.SuffixLink)
+                            {
+                                ProcessFinalNode(suffixLink, foundAction);
+                                suffixLink = suffixLink.SuffixLink;
+                            }
                         }
                         break;
                     }
@@ -66,6 +69,14 @@ namespace AhoCorasick.Core
                     currentNode = suffLink;
                     State = currentNode.Id;
                 }
+            }
+
+            private void ProcessFinalNode(Node currentNode, FoundDelegate foundAction)
+            {
+                if (!currentNode.Final) return;
+                var foundPosition = Position - currentNode.DataLength;
+                if (foundAction != null) foundAction(foundPosition, currentNode.FinalContext);
+                if (TotalFound != null) TotalFound(foundPosition, currentNode.FinalContext);
             }
         }
     }

@@ -82,5 +82,28 @@ vestibulum id ex a dui fringilla ultrices. orci varius natoque penatibus et magn
             foreach (var word in lookingWords) Assert.AreEqual(words.Contains(word), true);
         }
 
+        [Test]
+        public void OverlappingTextTest()
+        {
+            var lookingWords = new List<string>() { "test", "tester", "eres", "este", "est", "ste" };
+
+            var fsa = new SearchFsa<char>();
+            foreach (var word in lookingWords) fsa.Add(word);
+            fsa.Prepare();
+
+            var words = new List<string>();
+            var ep = fsa.GetEndPoint((index, context) =>
+            {
+                var currentWord = context.ToString();
+                words.Add(currentWord);
+            });
+
+            var data = "tetetestesterest";
+            foreach (var ch in data) ep.ProcessIncome(ch);
+
+            foreach (var word in lookingWords) Assert.AreEqual(words.Contains(word), true);
+        }
+
+
     }
 }

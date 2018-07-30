@@ -116,10 +116,23 @@ namespace AhoCorasick.Core
             lock (Locker)
             {
                 if (IsPrepared) return;
+                Recurse(Root, ResetHasSuffix);
                 Recurse(Root, SetSuffixLink);
                 Recurse(Root, RemoveRootLinks);
+                Recurse(Root, CalculateHasSuffix);
                 IsPrepared = true;
             }
+        }
+
+        private void CalculateHasSuffix(Node node)
+        {
+            var suffux = node.SuffixLink;
+            node.HasFinalSuffix = suffux.Final || suffux.HasFinalSuffix;
+        }
+
+        private void ResetHasSuffix(Node node)
+        {
+            node.HasFinalSuffix = false;
         }
 
         private void RemoveRootLinks(Node node)
