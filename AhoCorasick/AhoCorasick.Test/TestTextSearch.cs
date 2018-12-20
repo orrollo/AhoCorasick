@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AhoCorasick.Core;
 using NUnit.Framework;
@@ -104,6 +105,31 @@ vestibulum id ex a dui fringilla ultrices. orci varius natoque penatibus et magn
             foreach (var word in lookingWords) Assert.AreEqual(words.Contains(word), true);
         }
 
+        [Test]
+        public void OverlappingTextTest2()
+        {
+            var lookingWords = new List<string>() { "telega", "eleg" };
+            var fsa = new SearchFsa<char>();
+            foreach (var word in lookingWords) fsa.Add(word);
+            fsa.Prepare();
+
+            var words = new Dictionary<string,int>();
+            var ep = fsa.GetEndPoint((index, context) =>
+            {
+                var currentWord = context.ToString();
+                if (!words.ContainsKey(currentWord)) words[currentWord] = 0;
+                words[currentWord]++;
+            });
+
+            var data = "telegrammaotelega";
+            foreach (var ch in data) ep.ProcessIncome(ch);
+
+            var keys = words.Keys.ToArray();
+            Func<string, int, bool> checkWord = (word, cnt) => keys.Contains(word) && (words[word] == cnt);
+
+            Assert.AreEqual(checkWord("telega", 1), true);
+            Assert.AreEqual(checkWord("eleg", 2), true);
+        }
 
     }
 }

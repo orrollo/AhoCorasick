@@ -35,6 +35,7 @@
       <HintPath>..\packages\NUnit.3.5.0\lib\net20\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NUnit.System.Linq, Version=0.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
